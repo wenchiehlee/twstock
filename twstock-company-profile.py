@@ -38,7 +38,7 @@ df["類別"] = None
 
 # Create a lookup dictionary from the provided table
 lookup_table = {
-    "6982": "汽車工業",
+    "6982": "電機機械",
     "7704": "半導體業",
     "6885": "生技醫療業",
     "6997": "數位雲端",
