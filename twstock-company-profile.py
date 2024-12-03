@@ -38,7 +38,7 @@ df["類別"] = None
 
 # Create a lookup dictionary from the provided table
 lookup_table = {
-    "6982": "電機機械",
+    "6982": "汽車工業",
     "7704": "半導體業",
     "6885": "生技醫療業",
     "6997": "數位雲端",
@@ -47,7 +47,38 @@ lookup_table = {
     "6996": "半導體業",
     "7722": "數位雲端",
     "6720": "半導體業",
-    "6950": "資訊服務業"
+    "6950": "資訊服務業",
+    "6962": "半導體業",
+    "7705": "觀光餐旅",
+    "7708": "觀光餐旅",
+    "7703": "其他電子業",
+    "6988": "汽車工業",
+    "2646": "航運業",
+    "6862": "電子零組件業",
+    "8272": "資訊服務業",
+    "6919": "生技醫療業",
+    "6913": "電子零組件業",
+    "1294": "食品工業",
+    "6967": "電子零組件業",
+    "6923": "綠能環保",
+    "4772": "化學工業",
+    "2751": "觀光餐旅",
+    "6969": "綠能環保",
+    "6739": "其他電子業",
+    "6958": "其他業",
+    "6968": "居家生活",
+    "6838": "生技醫療業",
+    "7584": "文化創意業",
+    "3150": "半導體業",
+    "6957": "其他業",
+    "6951": "綠能環保",
+    "6637": "生技醫療業",
+    "6952": "其他業",
+    "6890": "運動休閒",
+    "6903": "其他電子業",
+    "6794": "生技醫療業",
+    "6771": "綠能環保",
+    "6881": "其他業"
 }
 
 # Update missing values in the DataFrame
@@ -65,7 +96,9 @@ for index, row in df.iterrows():
         # Update stock category if missing
         if pd.isna(row['類別']) or row['類別'] == '':
             df.at[index, '類別'] = stock_info.group
-        #    #logging.info(f"Updated '類別' for {stock_code}: {stock_info.group}")
+            if stock_code in lookup_table:
+                if lookup_table[stock_code] != stock_info.group:
+                    logging.warning(f"{stock_code} {stock_info.group}!={lookup_table[stock_code]}")
     else:
         # Lookup the category using the lookup table
         if stock_code in lookup_table:
