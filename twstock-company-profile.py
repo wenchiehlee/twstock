@@ -35,6 +35,8 @@ df.drop(columns=columns_to_remove, inplace=True, errors='ignore')
 
 # Add a new column "類別" with NaN as default value
 df["類別"] = None
+# Add a new column "類別" with NaN as default value
+# df["發行日"] = None
 
 # Create a lookup dictionary from the provided table
 lookup_table = {
@@ -101,11 +103,15 @@ for index, row in df.iterrows():
                 if lookup_table[stock_code] != stock_info.group:
                     logging.warning(f"{stock_code} {stock_info.group}!={lookup_table[stock_code]}")
                 else:
-                    logging.info(f"{stock_code} {stock_info.group}")
+                    logging.info(f"{stock_code} {stock_info.group} in lookup_table but the same. Can remove!!")
+        # Update stock price
+        # logging.info(f"{stock_code} {stock_info}")
+        # df.at[index, '發行日'] = stock_info.start
     else:
         # Lookup the category using the lookup table
         if stock_code in lookup_table:
             df.at[index, '類別'] = lookup_table[stock_code]
+            logging.warning(f"{stock_code} found in lookup_table {lookup_table[stock_code]} but not in twstock")
         else:
             logging.warning(f"Stock code {stock_code} not found in twstock.codes.")
 
