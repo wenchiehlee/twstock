@@ -101,7 +101,7 @@ for index, row in df.iterrows():
                 if lookup_table[stock_code] != stock_info.group:
                     logging.warning(f"{stock_code} {stock_info.group}!={lookup_table[stock_code]}")
                 else:
-                    logging.indo(f"{stock_code} {stock_info.group}=={lookup_table[stock_code]}")
+                    logging.info(f"{stock_code} {stock_info.group}")
     else:
         # Lookup the category using the lookup table
         if stock_code in lookup_table:
