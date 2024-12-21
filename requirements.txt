@@ -1,3 +1,0 @@
-twstock
-lxml
-finlab
