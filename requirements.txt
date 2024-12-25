@@ -1,2 +1,2 @@
-- twstock
-- pandas
+twstock
+pandas
